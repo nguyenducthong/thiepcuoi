@@ -417,7 +417,7 @@ function initRSVP() {
         form.reset();
 
         // Show success message
-        showNotification('Cảm ơn bạn đã xác nhận tham dự!');
+        showNotification('Cảm ơn bạn đã xác nhận tham dự!!');
     });
 }
 
