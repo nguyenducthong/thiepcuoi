@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thiệp Cưới - Minh & Hằng</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Playfair+Display:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Invitation Header - Hiển thị tên người được mời -->
+    <section id="invitation-header" class="invitation-header">
+        <div class="container">
+            <p class="invitation-label">Trân trọng kính mời</p>
+            <h2 class="guest-name" id="guestName">Quý khách</h2>
+            <p class="invitation-text">đến dự buổi tiệc chung vui cùng gia đình chúng tôi</p>
+        </div>
+    </section>
+
+    <!-- Hero Banner với Slideshow -->
+    <section id="hero" class="hero">
+        <div class="slideshow-container">
+            <div class="slide fade active">
+                <img src="https://images.unsplash.com/photo-1519741497674-611481863552?w=1920&h=1080&fit=crop" alt="Wedding Photo 1">
+            </div>
+            <div class="slide fade">
+                <img src="https://images.unsplash.com/photo-1511285560929-80b456fea0bc?w=1920&h=1080&fit=crop" alt="Wedding Photo 2">
+            </div>
+            <div class="slide fade">
+                <img src="https://images.unsplash.com/photo-1465495976277-4387d4b0b4c6?w=1920&h=1080&fit=crop" alt="Wedding Photo 3">
+            </div>
+            <div class="slide fade">
+                <img src="https://images.unsplash.com/photo-1606216794074-735e91aa2c92?w=1920&h=1080&fit=crop" alt="Wedding Photo 4">
+            </div>
+        </div>
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+            <p class="save-the-date">Save The Date</p>
+            <h1 class="couple-names">Đức Thông <span>&</span> Thu Trang</h1>
+            <p class="wedding-date-text">Chúng tôi sắp cưới!</p>
+
+            <!-- Countdown Timer -->
+            <div class="countdown" id="countdown">
+                <div class="countdown-item">
+                    <span class="countdown-number" id="days">00</span>
+                    <span class="countdown-label">Ngày</span>
+                </div>
+                <div class="countdown-item">
+                    <span class="countdown-number" id="hours">00</span>
+                    <span class="countdown-label">Giờ</span>
+                </div>
+                <div class="countdown-item">
+                    <span class="countdown-number" id="minutes">00</span>
+                    <span class="countdown-label">Phút</span>
+                </div>
+                <div class="countdown-item">
+                    <span class="countdown-number" id="seconds">00</span>
+                    <span class="countdown-label">Giây</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slideshow Navigation -->
+        <div class="slideshow-nav">
+            <span class="dot active" onclick="currentSlide(1)"></span>
+            <span class="dot" onclick="currentSlide(2)"></span>
+            <span class="dot" onclick="currentSlide(3)"></span>
+            <span class="dot" onclick="currentSlide(4)"></span>
+        </div>
+    </section>
+
+    <!-- Navigation -->
+    <nav id="navbar" class="navbar">
+        <div class="container">
+            <ul class="nav-links">
+                <li><a href="#hero">Trang chủ</a></li>
+                <li><a href="#couple">Cô dâu & Chú rể</a></li>
+                <li><a href="#story">Chuyện tình yêu</a></li>
+                <li><a href="#gallery">Album ảnh</a></li>
+                <li><a href="#events">Sự kiện</a></li>
+                <li><a href="#guestbook">Lưu bút</a></li>
+            </ul>
+            <div class="hamburger" id="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Couple Section - Thông tin cô dâu chú rể -->
+    <section id="couple" class="couple-section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Cô Dâu & Chú Rể</h2>
+                <p class="section-subtitle">Hai trái tim, một tình yêu</p>
+            </div>
+
+            <div class="couple-wrapper">
+                <!-- Chú rể -->
+                <div class="person groom">
+                    <div class="person-image">
+                        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=400&fit=crop" alt="Chú rể">
+                    </div>
+                    <h3 class="person-name">Nguyễn Văn Minh</h3>
+                    <p class="person-role">Chú Rể</p>
+                    <p class="person-description">
+                        Con trai ông <strong>Nguyễn Văn A</strong><br>
+                        và bà <strong>Trần Thị B</strong><br>
+                        Địa chỉ: 123 Đường ABC, Quận 1, TP.HCM
+                    </p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+
+                <!-- Heart Icon -->
+                <div class="heart-divider">
+                    <i class="fas fa-heart"></i>
+                </div>
+
+                <!-- Cô dâu -->
+                <div class="person bride">
+                    <div class="person-image">
+                        <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=400&h=400&fit=crop" alt="Cô dâu">
+                    </div>
+                    <h3 class="person-name">Trần Thị Hằng</h3>
+                    <p class="person-role">Cô Dâu</p>
+                    <p class="person-description">
+                        Con gái ông <strong>Trần Văn C</strong><br>
+                        và bà <strong>Lê Thị D</strong><br>
+                        Địa chỉ: 456 Đường XYZ, Quận 3, TP.HCM
+                    </p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Love Story Section -->
+    <section id="story" class="story-section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Chuyện Tình Yêu</h2>
+                <p class="section-subtitle">Hành trình đến với nhau của chúng tôi</p>
+            </div>
+
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-icon">
+                        <i class="fas fa-heart"></i>
+                    </div>
+                    <div class="timeline-content">
+                        <h3>Lần đầu gặp gỡ</h3>
+                        <span class="timeline-date">15/03/2020</span>
+                        <p>Chúng tôi gặp nhau lần đầu tại một buổi họp mặt bạn bè. Ánh mắt đầu tiên đã khiến tim tôi rung động...</p>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-icon">
+                        <i class="fas fa-coffee"></i>
+                    </div>
+                    <div class="timeline-content">
+                        <h3>Buổi hẹn đầu tiên</h3>
+                        <span class="timeline-date">22/03/2020</span>
+                        <p>Một tuần sau, chúng tôi có buổi hẹn cà phê đầu tiên. Cuộc trò chuyện kéo dài đến tận khuya...</p>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-icon">
+                        <i class="fas fa-heart"></i>
+                    </div>
+                    <div class="timeline-content">
+                        <h3>Chính thức yêu nhau</h3>
+                        <span class="timeline-date">14/02/2021</span>
+                        <p>Vào ngày Valentine, anh đã ngỏ lời và em đã đồng ý. Đó là ngày hạnh phúc nhất của chúng tôi...</p>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-icon">
+                        <i class="fas fa-ring"></i>
+                    </div>
+                    <div class="timeline-content">
+                        <h3>Lời cầu hôn</h3>
+                        <span class="timeline-date">14/02/2024</span>
+                        <p>Sau 3 năm bên nhau, anh đã quỳ gối cầu hôn em tại nơi chúng ta gặp nhau lần đầu...</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery Section - Album hình cưới -->
+    <section id="gallery" class="gallery-section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Album Hình Cưới</h2>
+                <p class="section-subtitle">Những khoảnh khắc đẹp của chúng tôi</p>
+            </div>
+
+            <div class="gallery-grid">
+                <div class="gallery-item" onclick="openLightbox(0)">
+                    <img src="https://images.unsplash.com/photo-1519741497674-611481863552?w=600&h=600&fit=crop" alt="Gallery 1">
+                    <div class="gallery-overlay">
+                        <i class="fas fa-search-plus"></i>
+                    </div>
+                </div>
+                <div class="gallery-item" onclick="openLightbox(1)">
+                    <img src="https://images.unsplash.com/photo-1511285560929-80b456fea0bc?w=600&h=600&fit=crop" alt="Gallery 2">
+                    <div class="gallery-overlay">
+                        <i class="fas fa-search-plus"></i>
+                    </div>
+                </div>
+                <div class="gallery-item" onclick="openLightbox(2)">
+                    <img src="https://images.unsplash.com/photo-1465495976277-4387d4b0b4c6?w=600&h=600&fit=crop" alt="Gallery 3">
+                    <div class="gallery-overlay">
+                        <i class="fas fa-search-plus"></i>
+                    </div>
+                </div>
+                <div class="gallery-item" onclick="openLightbox(3)">
+                    <img src="https://images.unsplash.com/photo-1606216794074-735e91aa2c92?w=600&h=600&fit=crop" alt="Gallery 4">
+                    <div class="gallery-overlay">
+                        <i class="fas fa-search-plus"></i>
+                    </div>
+                </div>
+                <div class="gallery-item" onclick="openLightbox(4)">
+                    <img src="https://images.unsplash.com/photo-1583939003579-730e3918a45a?w=600&h=600&fit=crop" alt="Gallery 5">
+                    <div class="gallery-overlay">
+                        <i class="fas fa-search-plus"></i>
+                    </div>
+                </div>
+                <div class="gallery-item" onclick="openLightbox(5)">
+                    <img src="https://images.unsplash.com/photo-1591604466107-ec97de577aff?w=600&h=600&fit=crop" alt="Gallery 6">
+                    <div class="gallery-overlay">
+                        <i class="fas fa-search-plus"></i>
+                    </div>
+                </div>
+                <div class="gallery-item" onclick="openLightbox(6)">
+                    <img src="https://images.unsplash.com/photo-1529634806980-85c3dd6d34ac?w=600&h=600&fit=crop" alt="Gallery 7">
+                    <div class="gallery-overlay">
+                        <i class="fas fa-search-plus"></i>
+                    </div>
+                </div>
+                <div class="gallery-item" onclick="openLightbox(7)">
+                    <img src="https://images.unsplash.com/photo-1522673607200-164d1b6ce486?w=600&h=600&fit=crop" alt="Gallery 8">
+                    <div class="gallery-overlay">
+                        <i class="fas fa-search-plus"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Lightbox -->
+    <div id="lightbox" class="lightbox">
+        <span class="lightbox-close" onclick="closeLightbox()">&times;</span>
+        <span class="lightbox-prev" onclick="changeImage(-1)">&#10094;</span>
+        <img id="lightbox-img" src="" alt="Lightbox Image">
+        <span class="lightbox-next" onclick="changeImage(1)">&#10095;</span>
+    </div>
+
+    <!-- Events Section - Thông tin sự kiện cưới -->
+    <section id="events" class="events-section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Sự Kiện Cưới</h2>
+                <p class="section-subtitle">Thông tin chi tiết về lễ cưới</p>
+            </div>
+
+            <div class="events-wrapper">
+                <!-- Lễ vu quy -->
+                <div class="event-card">
+                    <div class="event-icon">
+                        <i class="fas fa-heart"></i>
+                    </div>
+                    <h3 class="event-title">Lễ Vu Quy</h3>
+                    <div class="event-details">
+                        <div class="event-info">
+                            <i class="far fa-calendar-alt"></i>
+                            <span>Thứ Bảy, 15/03/2025</span>
+                        </div>
+                        <div class="event-info">
+                            <i class="far fa-clock"></i>
+                            <span>08:00 - 11:00</span>
+                        </div>
+                        <div class="event-info">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>456 Đường XYZ, Quận 3, TP.HCM</span>
+                        </div>
+                    </div>
+                    <a href="https://maps.google.com/?q=456+Đường+XYZ+Quận+3+TPHCM" target="_blank" class="btn btn-outline">
+                        <i class="fas fa-map"></i> Xem bản đồ
+                    </a>
+                </div>
+
+                <!-- Lễ thành hôn -->
+                <div class="event-card featured">
+                    <div class="event-icon">
+                        <i class="fas fa-rings-wedding"></i>
+                        <i class="fas fa-ring"></i>
+                    </div>
+                    <h3 class="event-title">Lễ Thành Hôn</h3>
+                    <div class="event-details">
+                        <div class="event-info">
+                            <i class="far fa-calendar-alt"></i>
+                            <span>Thứ Bảy, 15/03/2025</span>
+                        </div>
+                        <div class="event-info">
+                            <i class="far fa-clock"></i>
+                            <span>11:00 - 14:00</span>
+                        </div>
+                        <div class="event-info">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>Nhà hàng ABC, 789 Đường DEF, Quận 1, TP.HCM</span>
+                        </div>
+                    </div>
+                    <a href="https://maps.google.com/?q=Nhà+hàng+ABC+789+Đường+DEF+Quận+1+TPHCM" target="_blank" class="btn btn-primary">
+                        <i class="fas fa-map"></i> Xem bản đồ
+                    </a>
+                </div>
+
+                <!-- Tiệc cưới -->
+                <div class="event-card">
+                    <div class="event-icon">
+                        <i class="fas fa-glass-cheers"></i>
+                    </div>
+                    <h3 class="event-title">Tiệc Cưới</h3>
+                    <div class="event-details">
+                        <div class="event-info">
+                            <i class="far fa-calendar-alt"></i>
+                            <span>Chủ Nhật, 16/03/2025</span>
+                        </div>
+                        <div class="event-info">
+                            <i class="far fa-clock"></i>
+                            <span>18:00 - 21:00</span>
+                        </div>
+                        <div class="event-info">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>Trung tâm tiệc cưới XYZ, 123 Đường GHI, Quận 7, TP.HCM</span>
+                        </div>
+                    </div>
+                    <a href="https://maps.google.com/?q=Trung+tâm+tiệc+cưới+XYZ+123+Đường+GHI+Quận+7+TPHCM" target="_blank" class="btn btn-outline">
+                        <i class="fas fa-map"></i> Xem bản đồ
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Guestbook Section - Sổ lưu bút -->
+    <section id="guestbook" class="guestbook-section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Sổ Lưu Bút</h2>
+                <p class="section-subtitle">Gửi lời chúc đến cô dâu chú rể</p>
+            </div>
+
+            <div class="guestbook-wrapper">
+                <!-- Form gửi lời chúc -->
+                <div class="guestbook-form-container">
+                    <form id="guestbookForm" class="guestbook-form">
+                        <div class="form-group">
+                            <label for="wishName">Họ và tên</label>
+                            <input type="text" id="wishName" name="name" placeholder="Nhập họ và tên của bạn" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="wishMessage">Lời chúc</label>
+                            <textarea id="wishMessage" name="message" rows="4" placeholder="Viết lời chúc của bạn..." required></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary">
+                            <i class="fas fa-paper-plane"></i> Gửi lời chúc
+                        </button>
+                    </form>
+                </div>
+
+                <!-- Danh sách lời chúc - Sẽ được load từ Google Sheets -->
+                <div class="wishes-list" id="wishesList">
+                    <!-- Lời chúc sẽ được load tự động từ Google Sheets -->
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- RSVP Section -->
+    <section id="rsvp" class="rsvp-section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Xác Nhận Tham Dự</h2>
+                <p class="section-subtitle">Vui lòng xác nhận để chúng tôi chuẩn bị chu đáo hơn</p>
+            </div>
+
+            <form id="rsvpForm" class="rsvp-form">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="rsvpName">Họ và tên</label>
+                        <input type="text" id="rsvpName" name="name" placeholder="Nhập họ và tên" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="rsvpPhone">Số điện thoại</label>
+                        <input type="tel" id="rsvpPhone" name="phone" placeholder="Nhập số điện thoại" required>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="rsvpGuests">Số người tham dự</label>
+                        <select id="rsvpGuests" name="guests" required>
+                            <option value="">Chọn số người</option>
+                            <option value="1">1 người</option>
+                            <option value="2">2 người</option>
+                            <option value="3">3 người</option>
+                            <option value="4">4 người</option>
+                            <option value="5">5+ người</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="rsvpEvent">Sự kiện tham dự</label>
+                        <select id="rsvpEvent" name="event" required>
+                            <option value="">Chọn sự kiện</option>
+                            <option value="vuquy">Lễ Vu Quy</option>
+                            <option value="thanhhon">Lễ Thành Hôn</option>
+                            <option value="tieccuoi">Tiệc Cưới</option>
+                            <option value="all">Tất cả</option>
+                        </select>
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-primary btn-large">
+                    <i class="fas fa-check"></i> Xác nhận tham dự
+                </button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <h2 class="footer-title">Minh & Hằng</h2>
+                <p class="footer-date">15.03.2025</p>
+                <p class="footer-thanks">Cảm ơn bạn đã ghé thăm!</p>
+                <div class="footer-hearts">
+                    <i class="fas fa-heart"></i>
+                    <i class="fas fa-heart"></i>
+                    <i class="fas fa-heart"></i>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to Top Button -->
+    <button id="backToTop" class="back-to-top">
+        <i class="fas fa-chevron-up"></i>
+    </button>
+
+    <!-- Music Player - Vinyl Disc -->
+    <div id="musicPlayer" class="music-player">
+        <audio id="bgMusic" loop>
+            <source src="" type="audio/mpeg">
+        </audio>
+        <div id="musicDisc" class="music-disc" title="Bật/Tắt nhạc">
+            <div class="disc-outer">
+                <div class="disc-image">
+                    <img id="discImage" src="" alt="Disc">
+                </div>
+                <div class="disc-center"></div>
+            </div>
+            <div class="disc-play-icon">
+                <i class="fas fa-play"></i>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="js/config.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>
