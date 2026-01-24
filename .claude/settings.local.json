@@ -1,0 +1,8 @@
+{
+  "permissions": {
+    "allow": [
+      "WebFetch(domain:www.facebook.com)",
+      "WebFetch(domain:www.tiktok.com)"
+    ]
+  }
+}

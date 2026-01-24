@@ -138,16 +138,29 @@ const CONFIG = {
     ],
 
     // ===================================
-    // CÀI ĐẶT PHONG BÌ MỞ ĐẦU
+    // CÀI ĐẶT MÀN MỞ ĐẦU (CURTAIN)
     // ===================================
-    envelope: {
-        // Ảnh nền cho thiệp mời khi mở (để trống nếu không dùng)
-        // Ví dụ: "images/card-background.jpg" hoặc URL ảnh
-        cardBackground: "images/card-background.jpg",
+    curtain: {
+        // Ảnh nền full màn hình phía sau màn
+        // Ví dụ: "images/curtain-background.jpg" hoặc URL ảnh
+        backgroundImage: "images/curtain-bg.jpg",
 
-        // Thời gian hiển thị thiệp trước khi chuyển trang (milliseconds)
-        // 3000 = 3 giây
-        displayDuration: 3000
+        // Ảnh chữ Hỷ ở giữa màn hình (sẽ được chia đôi và kéo sang 2 bên)
+        // Ví dụ: "images/xi-image.png" hoặc URL ảnh
+        xiImage: "images/xi-curtain.png",
+
+        // Ảnh cặp đôi hiển thị trong thiệp mời sau khi mở màn
+        // Ví dụ: "images/couple-photo.jpg" hoặc URL ảnh
+        cardPhoto: "images/couple.jpg",
+
+        // === CÀI ĐẶT TỰ ĐỘNG ===
+        // Thời gian hiển thị màn đỏ trước khi tự động mở (milliseconds)
+        // 0 = chờ người dùng click, 2000 = 2 giây, 3000 = 3 giây
+        autoOpenDelay: 2000,
+
+        // Thời gian hiển thị thiệp trước khi tự động vào trang chính (milliseconds)
+        // 0 = chờ người dùng click, 3000 = 3 giây, 5000 = 5 giây
+        autoCloseDelay: 3000
     },
 
     // ===================================

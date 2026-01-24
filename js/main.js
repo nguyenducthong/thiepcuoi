@@ -181,106 +181,133 @@ function initGuestName() {
 }
 
 // ===================================
-// ENVELOPE ANIMATION
+// CURTAIN ANIMATION - Màn kéo mở đầu
 // ===================================
 function initEnvelope() {
-    const envelopeOverlay = document.getElementById('envelope-overlay');
-    const redEnvelope = document.getElementById('redEnvelope');
-    const headerCouple = document.getElementById('headerCouple');
-    const cardWeddingDate = document.getElementById('cardWeddingDate');
+    const curtainOverlay = document.getElementById('curtain-overlay');
+    const curtainContainer = document.getElementById('curtainContainer');
+    const curtainContent = document.getElementById('curtainContent');
 
-    if (!envelopeOverlay || !redEnvelope) return;
+    if (!curtainOverlay || !curtainContainer) return;
 
-    // Cập nhật tên cặp đôi trong header và card
+    // Cập nhật thông tin từ CONFIG
     if (CONFIG.couple) {
         const groomFirstName = CONFIG.couple.groom.name.split(' ').pop();
         const brideFirstName = CONFIG.couple.bride.name.split(' ').pop();
 
-        // Header couple name
-        if (headerCouple) {
-            headerCouple.textContent = `${groomFirstName} & ${brideFirstName}`;
-        }
-
-        // Card couple names
-        const groomNameEl = redEnvelope.querySelector('.groom-name');
-        const brideNameEl = redEnvelope.querySelector('.bride-name');
-
-        if (groomNameEl) groomNameEl.textContent = groomFirstName;
-        if (brideNameEl) brideNameEl.textContent = brideFirstName;
-
-        // Cập nhật thông tin nhà trai (groom's family)
-        const groomParentsEl = document.getElementById('groomParents');
-        const groomAddressEl = document.getElementById('groomAddress');
-        if (groomParentsEl && CONFIG.couple.groom) {
-            groomParentsEl.innerHTML = `Ông ${CONFIG.couple.groom.fatherName}<br>Bà ${CONFIG.couple.groom.motherName}`;
-        }
-        if (groomAddressEl && CONFIG.couple.groom.address) {
-            groomAddressEl.textContent = CONFIG.couple.groom.address;
-        }
-
-        // Cập nhật thông tin nhà gái (bride's family)
-        const brideParentsEl = document.getElementById('brideParents');
-        const brideAddressEl = document.getElementById('brideAddress');
-        if (brideParentsEl && CONFIG.couple.bride) {
-            brideParentsEl.innerHTML = `Ông ${CONFIG.couple.bride.fatherName}<br>Bà ${CONFIG.couple.bride.motherName}`;
-        }
-        if (brideAddressEl && CONFIG.couple.bride.address) {
-            brideAddressEl.textContent = CONFIG.couple.bride.address;
+        // Tên cặp đôi
+        const curtainCoupleName = document.getElementById('curtainCoupleName');
+        if (curtainCoupleName) {
+            curtainCoupleName.textContent = `${groomFirstName} & ${brideFirstName}`;
         }
     }
 
-    // Cập nhật ngày cưới
-    if (cardWeddingDate && CONFIG.weddingDate) {
+    // Cập nhật ngày cưới và thời gian
+    if (CONFIG.weddingDate) {
         const date = new Date(CONFIG.weddingDate);
-        const formattedDate = `${String(date.getDate()).padStart(2, '0')}.${String(date.getMonth() + 1).padStart(2, '0')}.${date.getFullYear()}`;
-        cardWeddingDate.textContent = formattedDate;
-    }
+        const days = ['Chủ nhật', 'Thứ 2', 'Thứ 3', 'Thứ 4', 'Thứ 5', 'Thứ 6', 'Thứ 7'];
+        const dayName = days[date.getDay()];
 
-    // Thêm background image cho card nếu có trong config
-    const invitationCard = redEnvelope.querySelector('.invitation-card');
-    if (invitationCard && CONFIG.envelope && CONFIG.envelope.cardBackground) {
-        invitationCard.style.backgroundImage = `url('${CONFIG.envelope.cardBackground}')`;
-    }
-
-    // Xử lý click vào phong bì đỏ
-    redEnvelope.addEventListener('click', () => {
-        // Kiểm tra xem đã mở chưa
-        if (redEnvelope.classList.contains('opened')) return;
-
-        // Mở phong bì
-        redEnvelope.classList.add('opened');
-
-        // Thêm class để blur các phần tử xung quanh
-        envelopeOverlay.classList.add('card-opened');
-
-        // Ẩn hướng dẫn
-        const instruction = document.querySelector('.tap-instruction');
-        if (instruction) {
-            instruction.style.opacity = '0';
+        // Ngày cưới
+        const curtainWeddingDate = document.getElementById('curtainWeddingDate');
+        if (curtainWeddingDate) {
+            const formattedDate = `${String(date.getDate()).padStart(2, '0')}.${String(date.getMonth() + 1).padStart(2, '0')}.${date.getFullYear()}`;
+            curtainWeddingDate.textContent = formattedDate;
         }
-    });
 
-    // Click vào card để đóng và vào trang chính
-    if (invitationCard) {
-        invitationCard.addEventListener('click', (e) => {
-            e.stopPropagation();
-
-            // Ẩn overlay và hiện thiệp cưới
-            envelopeOverlay.classList.add('hidden');
-
-            // Phát nhạc tự động sau khi mở envelope (nếu có)
-            const bgMusic = document.getElementById('bgMusic');
-            const musicDisc = document.getElementById('musicDisc');
-            const playIcon = musicDisc?.querySelector('.disc-play-icon i');
-
-            if (bgMusic && bgMusic.src) {
-                bgMusic.play().then(() => {
-                    musicDisc?.classList.add('playing');
-                    if (playIcon) playIcon.className = 'fas fa-pause';
-                }).catch(e => {
-                    console.log('Music autoplay after envelope:', e);
-                });
+        // Thời gian (lấy từ sự kiện chính nếu có)
+        const curtainWeddingTime = document.getElementById('curtainWeddingTime');
+        if (curtainWeddingTime) {
+            let timeText = dayName;
+            if (CONFIG.events && CONFIG.events.thanhhon && CONFIG.events.thanhhon.time) {
+                const eventTime = CONFIG.events.thanhhon.time.split(' - ')[0];
+                timeText = `${dayName.toUpperCase()} - ${eventTime}`;
             }
+            curtainWeddingTime.textContent = timeText;
+        }
+    }
+
+    // Cập nhật ảnh cặp đôi
+    const curtainCouplePhoto = document.getElementById('curtainCouplePhoto');
+    if (curtainCouplePhoto) {
+        const photoSrc = (CONFIG.curtain && CONFIG.curtain.cardPhoto) ||
+                        (CONFIG.images && CONFIG.images.couple) ||
+                        (CONFIG.images && CONFIG.images.banner && CONFIG.images.banner[0]);
+        if (photoSrc) {
+            curtainCouplePhoto.src = photoSrc;
+        }
+    }
+
+    // Cập nhật tên khách mời trong thiệp
+    const curtainGuestName = document.getElementById('curtainGuestName');
+    if (curtainGuestName) {
+        const urlParams = new URLSearchParams(window.location.search);
+        const guestName = urlParams.get('to') || urlParams.get('guest') || urlParams.get('name');
+        if (guestName) {
+            curtainGuestName.textContent = decodeURIComponent(guestName);
+        }
+    }
+
+    // Biến trạng thái
+    let isOpened = false;
+    let isClosed = false;
+
+    // Lấy cấu hình thời gian
+    const autoOpenDelay = (CONFIG.curtain && CONFIG.curtain.autoOpenDelay) || 0;
+    const autoCloseDelay = (CONFIG.curtain && CONFIG.curtain.autoCloseDelay) || 0;
+
+    // Hàm mở màn
+    const openCurtain = () => {
+        if (isOpened) return;
+        isOpened = true;
+
+        // Mở màn ra 2 bên
+        curtainContainer.classList.add('opened');
+        curtainOverlay.classList.add('opened');
+
+        // Tự động đóng thiệp nếu có cấu hình
+        if (autoCloseDelay > 0) {
+            setTimeout(closeCurtain, autoCloseDelay);
+        }
+    };
+
+    // Hàm đóng thiệp và vào trang chính
+    const closeCurtain = () => {
+        if (isClosed) return;
+        isClosed = true;
+
+        // Ẩn overlay hoàn toàn
+        curtainOverlay.style.display = 'none';
+        curtainOverlay.classList.add('hidden');
+
+        // Phát nhạc tự động (nếu có)
+        const bgMusic = document.getElementById('bgMusic');
+        const musicDisc = document.getElementById('musicDisc');
+        const playIcon = musicDisc?.querySelector('.disc-play-icon i');
+
+        if (bgMusic && bgMusic.src) {
+            bgMusic.play().then(() => {
+                musicDisc?.classList.add('playing');
+                if (playIcon) playIcon.className = 'fas fa-pause';
+            }).catch(e => {
+                console.log('Music autoplay:', e);
+            });
+        }
+    };
+
+    // Tự động mở màn nếu có cấu hình
+    if (autoOpenDelay > 0) {
+        setTimeout(openCurtain, autoOpenDelay);
+    }
+
+    // Click vào màn để mở (nếu chưa tự động mở)
+    curtainContainer.addEventListener('click', openCurtain);
+
+    // Click vào nội dung phía sau để vào trang chính
+    if (curtainContent) {
+        curtainContent.addEventListener('click', (e) => {
+            e.stopPropagation();
+            closeCurtain();
         });
     }
 }
