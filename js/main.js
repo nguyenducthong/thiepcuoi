@@ -164,11 +164,124 @@ function initGuestName() {
     const guestName = urlParams.get('to') || urlParams.get('guest') || urlParams.get('name');
 
     if (guestName) {
+        const decodedName = decodeURIComponent(guestName);
+
+        // Cập nhật tên khách trong envelope
+        const envelopeGuestName = document.getElementById('envelopeGuestName');
+        if (envelopeGuestName) {
+            envelopeGuestName.textContent = decodedName;
+        }
+
+        // Cập nhật tên khách trong invitation header
         const guestNameElement = document.getElementById('guestName');
         if (guestNameElement) {
-            // Decode URI component and display
-            guestNameElement.textContent = decodeURIComponent(guestName);
+            guestNameElement.textContent = decodedName;
         }
+    }
+}
+
+// ===================================
+// ENVELOPE ANIMATION
+// ===================================
+function initEnvelope() {
+    const envelopeOverlay = document.getElementById('envelope-overlay');
+    const redEnvelope = document.getElementById('redEnvelope');
+    const headerCouple = document.getElementById('headerCouple');
+    const cardWeddingDate = document.getElementById('cardWeddingDate');
+
+    if (!envelopeOverlay || !redEnvelope) return;
+
+    // Cập nhật tên cặp đôi trong header và card
+    if (CONFIG.couple) {
+        const groomFirstName = CONFIG.couple.groom.name.split(' ').pop();
+        const brideFirstName = CONFIG.couple.bride.name.split(' ').pop();
+
+        // Header couple name
+        if (headerCouple) {
+            headerCouple.textContent = `${groomFirstName} & ${brideFirstName}`;
+        }
+
+        // Card couple names
+        const groomNameEl = redEnvelope.querySelector('.groom-name');
+        const brideNameEl = redEnvelope.querySelector('.bride-name');
+
+        if (groomNameEl) groomNameEl.textContent = groomFirstName;
+        if (brideNameEl) brideNameEl.textContent = brideFirstName;
+
+        // Cập nhật thông tin nhà trai (groom's family)
+        const groomParentsEl = document.getElementById('groomParents');
+        const groomAddressEl = document.getElementById('groomAddress');
+        if (groomParentsEl && CONFIG.couple.groom) {
+            groomParentsEl.innerHTML = `Ông ${CONFIG.couple.groom.fatherName}<br>Bà ${CONFIG.couple.groom.motherName}`;
+        }
+        if (groomAddressEl && CONFIG.couple.groom.address) {
+            groomAddressEl.textContent = CONFIG.couple.groom.address;
+        }
+
+        // Cập nhật thông tin nhà gái (bride's family)
+        const brideParentsEl = document.getElementById('brideParents');
+        const brideAddressEl = document.getElementById('brideAddress');
+        if (brideParentsEl && CONFIG.couple.bride) {
+            brideParentsEl.innerHTML = `Ông ${CONFIG.couple.bride.fatherName}<br>Bà ${CONFIG.couple.bride.motherName}`;
+        }
+        if (brideAddressEl && CONFIG.couple.bride.address) {
+            brideAddressEl.textContent = CONFIG.couple.bride.address;
+        }
+    }
+
+    // Cập nhật ngày cưới
+    if (cardWeddingDate && CONFIG.weddingDate) {
+        const date = new Date(CONFIG.weddingDate);
+        const formattedDate = `${String(date.getDate()).padStart(2, '0')}.${String(date.getMonth() + 1).padStart(2, '0')}.${date.getFullYear()}`;
+        cardWeddingDate.textContent = formattedDate;
+    }
+
+    // Thêm background image cho card nếu có trong config
+    const invitationCard = redEnvelope.querySelector('.invitation-card');
+    if (invitationCard && CONFIG.envelope && CONFIG.envelope.cardBackground) {
+        invitationCard.style.backgroundImage = `url('${CONFIG.envelope.cardBackground}')`;
+    }
+
+    // Xử lý click vào phong bì đỏ
+    redEnvelope.addEventListener('click', () => {
+        // Kiểm tra xem đã mở chưa
+        if (redEnvelope.classList.contains('opened')) return;
+
+        // Mở phong bì
+        redEnvelope.classList.add('opened');
+
+        // Thêm class để blur các phần tử xung quanh
+        envelopeOverlay.classList.add('card-opened');
+
+        // Ẩn hướng dẫn
+        const instruction = document.querySelector('.tap-instruction');
+        if (instruction) {
+            instruction.style.opacity = '0';
+        }
+    });
+
+    // Click vào card để đóng và vào trang chính
+    if (invitationCard) {
+        invitationCard.addEventListener('click', (e) => {
+            e.stopPropagation();
+
+            // Ẩn overlay và hiện thiệp cưới
+            envelopeOverlay.classList.add('hidden');
+
+            // Phát nhạc tự động sau khi mở envelope (nếu có)
+            const bgMusic = document.getElementById('bgMusic');
+            const musicDisc = document.getElementById('musicDisc');
+            const playIcon = musicDisc?.querySelector('.disc-play-icon i');
+
+            if (bgMusic && bgMusic.src) {
+                bgMusic.play().then(() => {
+                    musicDisc?.classList.add('playing');
+                    if (playIcon) playIcon.className = 'fas fa-pause';
+                }).catch(e => {
+                    console.log('Music autoplay after envelope:', e);
+                });
+            }
+        });
     }
 }
 
@@ -810,29 +923,10 @@ function initMusicPlayer() {
         }
     });
 
-    // Tự động phát nhạc ngay khi trang load
-    // Thử phát ngay lập tức
-    bgMusic.play().then(() => {
-        isPlaying = true;
-        musicDisc.classList.add('playing');
-        if (playIcon) playIcon.className = 'fas fa-pause';
-    }).catch(e => {
-        // Nếu autoplay bị chặn, phát khi user click bất kỳ đâu
-        console.log('Autoplay blocked, waiting for user interaction');
-
-        const autoPlayOnInteraction = () => {
-            if (!isPlaying) {
-                playMusic();
-            }
-            document.removeEventListener('click', autoPlayOnInteraction);
-            document.removeEventListener('touchstart', autoPlayOnInteraction);
-            document.removeEventListener('scroll', autoPlayOnInteraction);
-        };
-
-        document.addEventListener('click', autoPlayOnInteraction);
-        document.addEventListener('touchstart', autoPlayOnInteraction);
-        document.addEventListener('scroll', autoPlayOnInteraction, { once: true });
-    });
+    // Không tự động phát nhạc - nhạc sẽ phát khi mở phong bì
+    // Lưu reference để có thể gọi từ initEnvelope
+    window.playWeddingMusic = playMusic;
+    window.pauseWeddingMusic = pauseMusic;
 }
 
 // ===================================
@@ -844,6 +938,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Initialize all functions
     initGuestName();
+    initEnvelope();
     initSlideshow();
     initCountdown();
     initLightbox();

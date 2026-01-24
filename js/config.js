@@ -138,6 +138,19 @@ const CONFIG = {
     ],
 
     // ===================================
+    // CÀI ĐẶT PHONG BÌ MỞ ĐẦU
+    // ===================================
+    envelope: {
+        // Ảnh nền cho thiệp mời khi mở (để trống nếu không dùng)
+        // Ví dụ: "images/card-background.jpg" hoặc URL ảnh
+        cardBackground: "images/card-background.jpg",
+
+        // Thời gian hiển thị thiệp trước khi chuyển trang (milliseconds)
+        // 3000 = 3 giây
+        displayDuration: 3000
+    },
+
+    // ===================================
     // TÙY CHỌN HIỂN THỊ
     // ===================================
     display: {

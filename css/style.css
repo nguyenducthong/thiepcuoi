@@ -3,6 +3,696 @@
    CSS Stylesheet with Responsive Design
    =================================== */
 
+/* ===================================
+   ENVELOPE OVERLAY - Style Thiệp Mời Cưới
+   =================================== */
+.envelope-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(180deg, #fdf2f4 0%, #fce4e8 50%, #fad4db 100%);
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: opacity 0.8s ease, visibility 0.8s ease;
+    overflow: hidden;
+}
+
+.envelope-overlay.hidden {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+}
+
+/* Nền tối khi mở thiệp */
+.envelope-overlay.card-opened {
+    background: rgba(0, 0, 0, 0.7);
+}
+
+/* Họa tiết song hỷ góc */
+.corner-decoration {
+    position: absolute;
+    font-size: 3.5rem;
+    color: rgba(200, 160, 120, 0.15);
+    font-weight: bold;
+    writing-mode: vertical-rl;
+    transition: all 0.5s ease;
+}
+
+.corner-decoration.top-left {
+    top: 30px;
+    left: 30px;
+}
+
+.corner-decoration.top-right {
+    top: 30px;
+    right: 30px;
+    transform: rotate(180deg);
+}
+
+.corner-decoration.bottom-left {
+    bottom: 30px;
+    left: 30px;
+}
+
+.corner-decoration.bottom-right {
+    bottom: 30px;
+    right: 30px;
+    transform: rotate(180deg);
+}
+
+/* Blur effect khi mở thiệp */
+.envelope-overlay.card-opened .corner-decoration,
+.envelope-overlay.card-opened .envelope-header,
+.envelope-overlay.card-opened .invitation-title,
+.envelope-overlay.card-opened .double-happiness,
+.envelope-overlay.card-opened .tap-instruction {
+    filter: blur(8px);
+    opacity: 0.3;
+    transition: all 0.5s ease;
+}
+
+.envelope-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    padding: 20px;
+    max-width: 500px;
+    width: 100%;
+}
+
+/* Header với tên cặp đôi */
+.envelope-header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    transition: all 0.5s ease;
+}
+
+.header-text {
+    font-family: var(--font-body);
+    font-size: 0.85rem;
+    color: #8b7355;
+    text-transform: uppercase;
+    letter-spacing: 4px;
+}
+
+.header-couple {
+    font-family: var(--font-heading);
+    font-size: 1.3rem;
+    color: #8b7355;
+    font-weight: 600;
+    letter-spacing: 2px;
+}
+
+/* Tiêu đề thiệp */
+.invitation-title {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 15px 0;
+    transition: all 0.5s ease;
+}
+
+.title-small {
+    font-family: var(--font-body);
+    font-size: 1.2rem;
+    color: #8b7355;
+    letter-spacing: 10px;
+    text-transform: uppercase;
+}
+
+.title-script {
+    font-family: var(--font-script);
+    font-size: 4.5rem;
+    color: #8b7355;
+    margin-top: -5px;
+}
+
+/* Biểu tượng Song Hỷ */
+.double-happiness {
+    margin: 15px 0;
+    transition: all 0.5s ease;
+}
+
+.xi-symbol {
+    font-size: 5rem;
+    color: #c9a227;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+    font-weight: bold;
+}
+
+/* Phong bì đỏ - Style giống thiệp cưới truyền thống */
+.red-envelope {
+    position: relative;
+    width: 340px;
+    height: 220px;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+    perspective: 1000px;
+}
+
+.red-envelope:hover {
+    transform: scale(1.02);
+}
+
+.envelope-body {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    transition: all 0.5s ease;
+}
+
+/* Mặt trước phong bì đỏ */
+.envelope-front-face {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(180deg, #c41e3a 0%, #b8213b 50%, #9e1b32 100%);
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+    border: 3px solid #d4a574;
+    padding: 15px;
+}
+
+/* Ẩn nắp phong bì */
+.envelope-flap-top {
+    display: none;
+}
+
+/* Song Hỷ vàng lớn ở giữa */
+.wax-seal {
+    width: 90px;
+    height: 90px;
+    background: linear-gradient(145deg, #d4a574 0%, #c9956a 50%, #b8845a 100%);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow:
+        0 4px 15px rgba(0, 0, 0, 0.4),
+        inset 0 2px 4px rgba(255, 255, 255, 0.3),
+        inset 0 -2px 4px rgba(0, 0, 0, 0.2);
+    position: relative;
+    z-index: 3;
+    border: 4px solid #f0d9a0;
+}
+
+.wax-seal::before {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    background: radial-gradient(circle at 30% 30%, rgba(255,255,255,0.3) 0%, transparent 50%);
+}
+
+.seal-text {
+    font-size: 2.5rem;
+    color: #8b5a2b;
+    font-weight: bold;
+    text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.4);
+}
+
+/* Chữ INVITATION bên dưới */
+.envelope-front-face::after {
+    content: 'INVITATION';
+    position: absolute;
+    bottom: 15px;
+    font-family: var(--font-body);
+    font-size: 0.9rem;
+    color: #f0d9a0;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+}
+
+/* Animation mở phong bì */
+.red-envelope.opened .envelope-front-face {
+    opacity: 0;
+    transform: scale(0.8);
+    transition: all 0.5s ease;
+}
+
+.red-envelope.opened .wax-seal {
+    opacity: 0;
+    transform: scale(0);
+    transition: all 0.3s ease;
+}
+
+/* Card bên trong - Thiệp mời */
+.invitation-card {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 380px;
+    height: auto;
+    min-height: 480px;
+    background: linear-gradient(135deg, #fffef9 0%, #fff9f0 100%);
+    border-radius: 12px;
+    z-index: -1;
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.9);
+    transition: all 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) 0.2s;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+    background-size: cover;
+    background-position: center;
+    overflow: visible;
+}
+
+/* Khi mở - Card hiện ra đẹp */
+.red-envelope.opened .invitation-card {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+    z-index: 100;
+    box-shadow: 0 25px 60px rgba(0, 0, 0, 0.35);
+    cursor: pointer;
+}
+
+/* Hint nhấn vào card - đã chuyển vào trong card */
+
+/* Overlay cho card khi có background image */
+.card-inner {
+    width: 100%;
+    height: 100%;
+    padding: 15px;
+    background: rgba(255, 255, 255, 0.97);
+    border-radius: 12px;
+}
+
+.card-border {
+    width: 100%;
+    height: 100%;
+    border: 3px solid #c9a227;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 20px 15px;
+    text-align: center;
+    background: rgba(255, 255, 255, 0.95);
+}
+
+/* Thông tin nhà trai nhà gái */
+.card-families {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    gap: 15px;
+    margin-bottom: 15px;
+}
+
+.family-info {
+    flex: 1;
+    text-align: center;
+}
+
+.family-label {
+    font-family: var(--font-body);
+    font-size: 0.7rem;
+    color: #c41e3a;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 5px;
+}
+
+.family-parents {
+    font-family: var(--font-body);
+    font-size: 0.65rem;
+    color: #333;
+    line-height: 1.5;
+    margin-bottom: 3px;
+}
+
+.family-address {
+    font-family: var(--font-body);
+    font-size: 0.55rem;
+    color: #666;
+    font-style: italic;
+    line-height: 1.3;
+}
+
+.card-divider-line {
+    width: 80%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, #c9a227, transparent);
+    margin: 10px 0;
+}
+
+.card-label {
+    font-family: var(--font-body);
+    font-size: 0.75rem;
+    color: #8b7355;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    margin-bottom: 8px;
+}
+
+.card-guest-name {
+    font-family: var(--font-script);
+    font-size: 2rem;
+    color: #c41e3a;
+    margin-bottom: 8px;
+    line-height: 1.2;
+}
+
+.card-divider {
+    width: 50px;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, #c9a227, transparent);
+    margin: 8px 0;
+}
+
+.card-subtitle {
+    font-family: var(--font-body);
+    font-size: 0.7rem;
+    color: #666;
+    margin-bottom: 15px;
+}
+
+.card-couple {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-bottom: 10px;
+}
+
+.card-couple .groom-name,
+.card-couple .bride-name {
+    font-family: var(--font-script);
+    font-size: 1.8rem;
+    color: #8b7355;
+    font-weight: 600;
+}
+
+.card-couple .heart-icon {
+    color: #c41e3a;
+    font-size: 1.2rem;
+    animation: heartPulse 1.5s ease infinite;
+}
+
+.card-date {
+    font-family: var(--font-body);
+    font-size: 0.9rem;
+    color: #c9a227;
+    margin-top: 5px;
+    letter-spacing: 3px;
+    font-weight: 600;
+}
+
+.card-tap-hint {
+    font-family: var(--font-body);
+    font-size: 0.65rem;
+    color: #999;
+    margin-top: 15px;
+    letter-spacing: 1px;
+}
+
+@keyframes heartPulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.3); }
+}
+
+/* Hướng dẫn nhấp */
+.tap-instruction {
+    font-family: var(--font-body);
+    font-size: 0.85rem;
+    color: #8b7355;
+    letter-spacing: 3px;
+    margin-top: 20px;
+    animation: fadeInOut 2s ease infinite;
+    transition: all 0.5s ease;
+}
+
+@keyframes fadeInOut {
+    0%, 100% { opacity: 0.5; }
+    50% { opacity: 1; }
+}
+
+/* ===================================
+   RESPONSIVE - Desktop
+   =================================== */
+@media (min-width: 769px) {
+    .envelope-container {
+        gap: 25px;
+    }
+
+    .title-script {
+        font-size: 5rem;
+    }
+
+    .xi-symbol {
+        font-size: 6rem;
+    }
+
+    .red-envelope {
+        width: 380px;
+        height: 250px;
+    }
+
+    .invitation-card {
+        width: 420px;
+        min-height: 520px;
+    }
+
+    .wax-seal {
+        width: 100px;
+        height: 100px;
+    }
+
+    .seal-text {
+        font-size: 2.8rem;
+    }
+
+    .card-guest-name {
+        font-size: 2.4rem;
+    }
+
+    .card-couple .groom-name,
+    .card-couple .bride-name {
+        font-size: 2rem;
+    }
+
+    .family-label {
+        font-size: 0.75rem;
+    }
+
+    .family-parents {
+        font-size: 0.7rem;
+    }
+
+    .family-address {
+        font-size: 0.6rem;
+    }
+
+    .card-date {
+        font-size: 1rem;
+    }
+}
+
+/* Responsive cho tablet */
+@media (max-width: 768px) {
+    .corner-decoration {
+        font-size: 2.5rem;
+        top: 20px;
+        left: 20px;
+    }
+
+    .corner-decoration.top-right,
+    .corner-decoration.bottom-right {
+        right: 20px;
+    }
+
+    .corner-decoration.bottom-left,
+    .corner-decoration.bottom-right {
+        bottom: 20px;
+    }
+
+    .red-envelope {
+        width: 320px;
+        height: 210px;
+    }
+
+    .invitation-card {
+        width: 360px;
+        min-height: 460px;
+    }
+}
+
+/* Responsive cho mobile */
+@media (max-width: 480px) {
+    .corner-decoration {
+        font-size: 2rem;
+        top: 15px;
+        left: 15px;
+    }
+
+    .corner-decoration.top-right,
+    .corner-decoration.bottom-right {
+        right: 15px;
+    }
+
+    .corner-decoration.bottom-left,
+    .corner-decoration.bottom-right {
+        bottom: 15px;
+    }
+
+    .title-small {
+        font-size: 1rem;
+        letter-spacing: 6px;
+    }
+
+    .title-script {
+        font-size: 3.2rem;
+    }
+
+    .xi-symbol {
+        font-size: 3.5rem;
+    }
+
+    .red-envelope {
+        width: 300px;
+        height: 200px;
+    }
+
+    .invitation-card {
+        width: 330px;
+        min-height: 420px;
+    }
+
+    .card-border {
+        padding: 15px 12px;
+    }
+
+    .wax-seal {
+        width: 80px;
+        height: 80px;
+    }
+
+    .seal-text {
+        font-size: 2rem;
+    }
+
+    .tap-instruction {
+        font-size: 0.75rem;
+        letter-spacing: 2px;
+    }
+
+    .card-label {
+        font-size: 0.65rem;
+    }
+
+    .card-guest-name {
+        font-size: 1.7rem;
+    }
+
+    .card-couple .groom-name,
+    .card-couple .bride-name {
+        font-size: 1.5rem;
+    }
+
+    .family-label {
+        font-size: 0.6rem;
+    }
+
+    .family-parents {
+        font-size: 0.55rem;
+    }
+
+    .family-address {
+        font-size: 0.5rem;
+    }
+
+    .card-date {
+        font-size: 0.8rem;
+    }
+
+    .card-tap-hint {
+        font-size: 0.6rem;
+    }
+
+    .envelope-front-face::after {
+        font-size: 0.75rem;
+        bottom: 12px;
+    }
+}
+
+@media (max-width: 360px) {
+    .title-script {
+        font-size: 2.8rem;
+    }
+
+    .xi-symbol {
+        font-size: 3rem;
+    }
+
+    .red-envelope {
+        width: 280px;
+        height: 180px;
+    }
+
+    .invitation-card {
+        width: 300px;
+        min-height: 400px;
+    }
+
+    .card-border {
+        padding: 12px 10px;
+    }
+
+    .card-families {
+        gap: 10px;
+    }
+
+    .wax-seal {
+        width: 70px;
+        height: 70px;
+    }
+
+    .seal-text {
+        font-size: 1.8rem;
+    }
+
+    .card-guest-name {
+        font-size: 1.5rem;
+    }
+
+    .card-couple .groom-name,
+    .card-couple .bride-name {
+        font-size: 1.3rem;
+    }
+
+    .family-label {
+        font-size: 0.55rem;
+    }
+
+    .family-parents {
+        font-size: 0.5rem;
+    }
+
+    .family-address {
+        font-size: 0.45rem;
+    }
+
+    .card-date {
+        font-size: 0.75rem;
+    }
+}
+
 /* CSS Variables */
 :root {
     --primary-color: #d4a373;
@@ -1057,16 +1747,20 @@ ul {
         background: var(--white);
         flex-direction: column;
         align-items: center;
-        padding: 20px 0;
+        padding: 0;
         gap: 0;
         max-height: 0;
         overflow: hidden;
         transition: var(--transition);
-        box-shadow: var(--shadow-md);
+        box-shadow: none;
+        display: none;
     }
 
     .nav-links.active {
+        display: flex;
         max-height: 400px;
+        padding: 20px 0;
+        box-shadow: var(--shadow-md);
     }
 
     .nav-links li {

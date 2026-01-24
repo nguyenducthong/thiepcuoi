@@ -3,12 +3,93 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Thiệp Cưới - Minh & Hằng</title>
+    <title>Thiệp Cưới - Đức Thông & Thu Trang</title>
     <link rel="stylesheet" href="css/style.css">
     <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Playfair+Display:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
+    <!-- Envelope Overlay -->
+    <div id="envelope-overlay" class="envelope-overlay">
+        <!-- Họa tiết song hỷ trang trí góc -->
+        <div class="corner-decoration top-left">囍</div>
+        <div class="corner-decoration top-right">囍</div>
+        <div class="corner-decoration bottom-left">囍</div>
+        <div class="corner-decoration bottom-right">囍</div>
+
+        <div class="envelope-container">
+            <!-- Header với tên cặp đôi -->
+            <div class="envelope-header">
+                <span class="header-text">THƯ MỜI CƯỚI</span>
+                <span class="header-couple" id="headerCouple">Đức Thông & Thu Trang</span>
+            </div>
+
+            <!-- Tiêu đề thiệp -->
+            <div class="invitation-title">
+                <span class="title-small">THIỆP</span>
+                <span class="title-script">Mời Cưới</span>
+            </div>
+
+            <!-- Biểu tượng Song Hỷ -->
+            <div class="double-happiness">
+                <span class="xi-symbol">囍</span>
+            </div>
+
+            <!-- Phong bì đỏ -->
+            <div class="red-envelope" id="redEnvelope">
+                <div class="envelope-body">
+                    <div class="envelope-flap-top"></div>
+                    <div class="envelope-front-face">
+                        <!-- Wax Seal -->
+                        <div class="wax-seal">
+                            <span class="seal-text">囍</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card bên trong -->
+                <div class="invitation-card">
+                    <div class="card-inner">
+                        <div class="card-border">
+                            <!-- Thông tin nhà trai và nhà gái -->
+                            <div class="card-families">
+                                <div class="family-info family-groom">
+                                    <p class="family-label">Nhà trai:</p>
+                                    <p class="family-parents" id="groomParents">Ông Nguyễn Đức Thảo<br>Bà Lê Thị Mười</p>
+                                    <p class="family-address" id="groomAddress">123 Đường ABC, Quận 1, TP.HCM</p>
+                                </div>
+                                <div class="family-info family-bride">
+                                    <p class="family-label">Nhà gái:</p>
+                                    <p class="family-parents" id="brideParents">Ông Trần Văn C<br>Bà Lê Thị D</p>
+                                    <p class="family-address" id="brideAddress">456 Đường XYZ, Quận 3, TP.HCM</p>
+                                </div>
+                            </div>
+
+                            <div class="card-divider-line"></div>
+
+                            <p class="card-label">Trân trọng kính mời</p>
+                            <h2 class="card-guest-name" id="envelopeGuestName">Quý khách</h2>
+                            <p class="card-subtitle">đến dự lễ cưới của chúng tôi</p>
+
+                            <div class="card-couple">
+                                <span class="groom-name" id="cardGroomName">Đức Thông</span>
+                                <span class="heart-icon">♥</span>
+                                <span class="bride-name" id="cardBrideName">Thu Trang</span>
+                            </div>
+
+                            <div class="card-date" id="cardWeddingDate">22.03.2026</div>
+
+                            <p class="card-tap-hint">Nhấn để tiếp tục</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Hướng dẫn -->
+            <p class="tap-instruction">- NHẤP VÀO THIỆP ĐỂ MỞ -</p>
+        </div>
+    </div>
+
     <!-- Invitation Header - Hiển thị tên người được mời -->
     <section id="invitation-header" class="invitation-header">
         <div class="container">
