@@ -781,22 +781,14 @@ function initContentFromConfig() {
     const groomSection = document.querySelector('.person.groom');
     if (groomSection && CONFIG.couple && CONFIG.couple.groom) {
         const groom = CONFIG.couple.groom;
-        groomSection.querySelector('.person-name').textContent = groom.name;
-        groomSection.querySelector('.person-description').innerHTML = `
-            Con trai ông <strong>${groom.fatherName}</strong><br>
-            và bà <strong>${groom.motherName}</strong><br>
-            Địa chỉ: ${groom.address}
-        `;
+        const groomNameEl = groomSection.querySelector('.person-name');
+        if (groomNameEl) groomNameEl.textContent = groom.name;
+
         // Ảnh chú rể - ưu tiên từ CONFIG.images, sau đó từ couple.groom.photo
         const groomPhoto = (CONFIG.images && CONFIG.images.groom) || groom.photo;
-        if (groomPhoto) {
-            groomSection.querySelector('.person-image img').src = groomPhoto;
-        }
-        // Social links
-        const socialLinks = groomSection.querySelectorAll('.social-links a');
-        if (socialLinks.length >= 2) {
-            socialLinks[0].href = groom.facebook || '#';
-            socialLinks[1].href = groom.instagram || '#';
+        const groomImg = groomSection.querySelector('.person-image img');
+        if (groomPhoto && groomImg) {
+            groomImg.src = groomPhoto;
         }
     }
 
@@ -804,22 +796,39 @@ function initContentFromConfig() {
     const brideSection = document.querySelector('.person.bride');
     if (brideSection && CONFIG.couple && CONFIG.couple.bride) {
         const bride = CONFIG.couple.bride;
-        brideSection.querySelector('.person-name').textContent = bride.name;
-        brideSection.querySelector('.person-description').innerHTML = `
-            Con gái ông <strong>${bride.fatherName}</strong><br>
-            và bà <strong>${bride.motherName}</strong><br>
-            Địa chỉ: ${bride.address}
-        `;
+        const brideNameEl = brideSection.querySelector('.person-name');
+        if (brideNameEl) brideNameEl.textContent = bride.name;
+
         // Ảnh cô dâu - ưu tiên từ CONFIG.images, sau đó từ couple.bride.photo
         const bridePhoto = (CONFIG.images && CONFIG.images.bride) || bride.photo;
-        if (bridePhoto) {
-            brideSection.querySelector('.person-image img').src = bridePhoto;
+        const brideImg = brideSection.querySelector('.person-image img');
+        if (bridePhoto && brideImg) {
+            brideImg.src = bridePhoto;
         }
-        // Social links
-        const socialLinks = brideSection.querySelectorAll('.social-links a');
-        if (socialLinks.length >= 2) {
-            socialLinks[0].href = bride.facebook || '#';
-            socialLinks[1].href = bride.instagram || '#';
+    }
+
+    // Cập nhật thông tin gia đình (Nhà Trai & Nhà Gái)
+    if (CONFIG.couple) {
+        // Nhà trai
+        const groomFamily = document.querySelector('.groom-family');
+        if (groomFamily && CONFIG.couple.groom) {
+            const groom = CONFIG.couple.groom;
+            const parentNames = groomFamily.querySelectorAll('.parent-name');
+            if (parentNames.length >= 2) {
+                parentNames[0].innerHTML = `Ông <strong>${groom.fatherName}</strong>`;
+                parentNames[1].innerHTML = `Bà <strong>${groom.motherName}</strong>`;
+            }
+        }
+
+        // Nhà gái
+        const brideFamily = document.querySelector('.bride-family');
+        if (brideFamily && CONFIG.couple.bride) {
+            const bride = CONFIG.couple.bride;
+            const parentNames = brideFamily.querySelectorAll('.parent-name');
+            if (parentNames.length >= 2) {
+                parentNames[0].innerHTML = `Ông <strong>${bride.fatherName}</strong>`;
+                parentNames[1].innerHTML = `Bà <strong>${bride.motherName}</strong>`;
+            }
         }
     }
 

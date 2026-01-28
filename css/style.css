@@ -1108,25 +1108,94 @@ ul {
     background: var(--white);
 }
 
+/* Family Info - Nhà Trai & Nhà Gái */
+.family-info {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 40px;
+    margin-bottom: 50px;
+    flex-wrap: wrap;
+}
+
+.family-side {
+    text-align: center;
+    flex: 1;
+    max-width: 250px;
+}
+
+.family-label {
+    font-family: var(--font-body);
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--primary-color);
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    margin-bottom: 15px;
+}
+
+.parent-name {
+    font-family: var(--font-body);
+    font-size: 1rem;
+    color: var(--text-color);
+    margin-bottom: 5px;
+}
+
+.parent-name strong {
+    color: var(--primary-dark);
+}
+
+.family-divider {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-top: 20px;
+}
+
+.family-divider i {
+    font-size: 1.5rem;
+    color: var(--rose);
+    animation: heartbeat 1.5s ease infinite;
+}
+
+/* Couple Wrapper */
 .couple-wrapper {
     display: flex;
     justify-content: center;
     align-items: flex-start;
-    gap: 60px;
+    gap: 40px;
     flex-wrap: wrap;
 }
 
 .person {
     text-align: center;
-    max-width: 350px;
+    max-width: 280px;
+    flex: 1;
+}
+
+.person-role {
+    font-family: var(--font-body);
+    font-size: 0.9rem;
+    color: var(--text-light);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-bottom: 5px;
+}
+
+.person-name {
+    font-family: var(--font-script);
+    font-size: 2.5rem;
+    color: var(--primary-color);
+    margin-bottom: 15px;
 }
 
 .person-image {
-    width: 250px;
-    height: 250px;
-    border-radius: 50%;
+    width: 100%;
+    max-width: 250px;
+    height: 350px;
+    border-radius: 8px;
     overflow: hidden;
-    margin: 0 auto 25px;
+    margin: 0 auto;
     border: 5px solid var(--primary-color);
     box-shadow: var(--shadow-lg);
 }
@@ -1137,61 +1206,15 @@ ul {
     object-fit: cover;
 }
 
-.person-name {
-    font-family: var(--font-script);
-    font-size: 2.5rem;
-    color: var(--primary-color);
-    margin-bottom: 5px;
-}
-
-.person-role {
-    font-family: var(--font-body);
-    font-size: 0.9rem;
-    color: var(--text-light);
-    text-transform: uppercase;
-    letter-spacing: 2px;
-    margin-bottom: 15px;
-}
-
-.person-description {
-    font-size: 0.95rem;
-    line-height: 1.8;
-    color: var(--text-light);
-    margin-bottom: 20px;
-}
-
-.social-links {
-    display: flex;
-    justify-content: center;
-    gap: 15px;
-}
-
-.social-links a {
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    background: var(--secondary-color);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: var(--primary-color);
-    transition: var(--transition);
-}
-
-.social-links a:hover {
-    background: var(--primary-color);
-    color: var(--white);
-}
-
 .heart-divider {
     display: flex;
     align-items: center;
     justify-content: center;
-    padding-top: 100px;
+    padding-top: 80px;
 }
 
 .heart-divider i {
-    font-size: 3rem;
+    font-size: 2rem;
     color: var(--rose);
     animation: heartbeat 1.5s ease infinite;
 }
@@ -1832,13 +1855,48 @@ ul {
     }
 
     /* Couple Section */
+    .family-info {
+        gap: 20px;
+    }
+
+    .family-side {
+        max-width: 45%;
+    }
+
+    .family-label {
+        font-size: 0.8rem;
+    }
+
+    .parent-name {
+        font-size: 0.9rem;
+    }
+
+    .family-divider {
+        display: none;
+    }
+
     .couple-wrapper {
-        flex-direction: column;
-        align-items: center;
+        flex-direction: row;
+        align-items: flex-start;
+        gap: 15px;
+    }
+
+    .person {
+        max-width: 45%;
+        flex: 1;
+    }
+
+    .person-name {
+        font-size: 2rem;
+    }
+
+    .person-image {
+        width: 100%;
+        height: 280px;
     }
 
     .heart-divider {
-        padding: 30px 0;
+        display: none;
     }
 
     /* Timeline */
@@ -1982,14 +2040,41 @@ ul {
         padding: 60px 0;
     }
 
+    /* Family Info */
+    .family-info {
+        gap: 15px;
+        margin-bottom: 30px;
+    }
+
+    .family-side {
+        max-width: 48%;
+    }
+
+    .family-label {
+        font-size: 0.7rem;
+        letter-spacing: 2px;
+    }
+
+    .parent-name {
+        font-size: 0.8rem;
+    }
+
     /* Person */
+    .person {
+        max-width: 48%;
+    }
+
     .person-image {
-        width: 180px;
-        height: 180px;
+        width: 100%;
+        height: 250px;
     }
 
     .person-name {
-        font-size: 2rem;
+        font-size: 1.5rem;
+    }
+
+    .person-role {
+        font-size: 0.7rem;
     }
 
     /* Timeline */
@@ -2084,9 +2169,33 @@ ul {
         font-size: 1.3rem;
     }
 
+    .family-info {
+        gap: 10px;
+    }
+
+    .family-label {
+        font-size: 0.65rem;
+    }
+
+    .parent-name {
+        font-size: 0.7rem;
+    }
+
+    .couple-wrapper {
+        gap: 8px;
+    }
+
     .person-image {
-        width: 150px;
-        height: 150px;
+        width: 100%;
+        height: 200px;
+    }
+
+    .person-name {
+        font-size: 1.2rem;
+    }
+
+    .person-role {
+        font-size: 0.6rem;
     }
 }
 

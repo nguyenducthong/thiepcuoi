@@ -31,22 +31,16 @@ const CONFIG = {
     // ===================================
     couple: {
         groom: {
-            name: "Nguyễn Đức Thông",
+            name: "Đức Thông",
             fatherName: "Nguyễn Đức Thảo",
             motherName: "Lê Thị Mười",
-            address: "123 Đường ABC, Quận 1, TP.HCM",
             photo: "images/groom.jpg",
-            facebook: "#",
-            instagram: "#"
         },
         bride: {
-            name: "Nguyễn Thu Trang",
-            fatherName: "Trần Văn C",
-            motherName: "Lê Thị D",
-            address: "456 Đường XYZ, Quận 3, TP.HCM",
+            name: "Thu Trang",
+            fatherName: "Nguyễn Thanh Bình",
+            motherName: "Đỗ Thị Tuấn Anh",
             photo: "images/bride.jpg",
-            facebook: "#",
-            instagram: "#"
         }
     },
 
