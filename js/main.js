@@ -966,6 +966,87 @@ function initMusicPlayer() {
 }
 
 // ===================================
+// FALLING HEARTS - Trái tim rơi lấp lánh
+// ===================================
+function initFallingHearts() {
+    const container = document.getElementById('fallingHearts');
+    if (!container) return;
+
+    // Cấu hình
+    const config = {
+        maxHearts: 20,           // Số lượng hearts tối đa trên màn hình
+        spawnInterval: 1000,      // Thời gian giữa mỗi lần tạo heart (ms)
+        minDuration: 6,          // Thời gian rơi tối thiểu (giây)
+        maxDuration: 12,         // Thời gian rơi tối đa (giây)
+        minSize: 14,             // Kích thước tối thiểu (px)
+        maxSize: 28              // Kích thước tối đa (px)
+    };
+
+    // Các class màu sắc cánh đào
+    const petalColors = [
+        'petal-light',
+        'petal-medium',
+        'petal-dark'
+    ];
+
+    // 3 kích thước
+    const sizes = ['small', 'medium', 'large'];
+
+    let activeHearts = 0;
+
+    function createHeart() {
+        if (activeHearts >= config.maxHearts) return;
+
+        const heart = document.createElement('div');
+        heart.className = 'heart';
+
+        // Random màu cánh đào
+        const colorClass = petalColors[Math.floor(Math.random() * petalColors.length)];
+        heart.classList.add(colorClass);
+
+        // Random kích thước (3 loại)
+        const sizeClass = sizes[Math.floor(Math.random() * sizes.length)];
+        heart.classList.add(sizeClass);
+
+        // Cánh hoa (dùng CSS để tạo hình)
+
+        // Random vị trí ngang
+        const leftPosition = Math.random() * 100;
+        heart.style.left = leftPosition + '%';
+
+        // Random thời gian rơi
+        const duration = Math.random() * (config.maxDuration - config.minDuration) + config.minDuration;
+        const swayDuration = Math.random() * 2 + 2; // 2-4 giây cho mỗi chu kỳ lắc lư
+        const rotateDuration = Math.random() * 2 + 3; // 3-5 giây cho mỗi vòng quay
+        heart.style.animationDuration = duration + 's, ' + swayDuration + 's, ' + rotateDuration + 's';
+
+        // Random delay cho hiệu ứng
+        const swayDelay = Math.random() * 2;
+        heart.style.animationDelay = '0s, ' + swayDelay + 's, 0s';
+
+        // Thêm vào container
+        container.appendChild(heart);
+        activeHearts++;
+
+        // Xóa heart sau khi animation kết thúc
+        setTimeout(() => {
+            if (heart.parentNode) {
+                heart.remove();
+                activeHearts--;
+            }
+        }, duration * 1000);
+    }
+
+    // Tạo hearts liên tục
+    setInterval(createHeart, config.spawnInterval);
+
+    // Tạo vài hearts ngay khi load
+    for (let i = 0; i < 5; i++) {
+        setTimeout(createHeart, i * 200);
+    }
+}
+
+// ===================================
 // INITIALIZE
 // ===================================
 document.addEventListener('DOMContentLoaded', () => {
@@ -986,6 +1067,7 @@ document.addEventListener('DOMContentLoaded', () => {
     initStickyNav();
     initSmoothScroll();
     initMusicPlayer();
+    initFallingHearts();
     preloadImages();
 
     console.log('Wedding Invitation Website Initialized!');

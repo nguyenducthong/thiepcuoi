@@ -9,8 +9,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
-    <!-- Falling Hearts Container - Trái tim rơi lấp lánh -->
-    <div class="falling-hearts" id="fallingHearts"></div>
+    <!-- Curtain Overlay - Màn kéo mở đầu -->
+    
 
     <!-- Invitation Header - Hiển thị tên người được mời -->
     <section id="invitation-header" class="invitation-header">
@@ -69,7 +69,7 @@
             <span class="dot active" onclick="currentSlide(1)"></span>
             <span class="dot" onclick="currentSlide(2)"></span>
             <span class="dot" onclick="currentSlide(3)"></span>
-            <!-- <span class="dot" onclick="currentSlide(4)"></span> -->
+            <span class="dot" onclick="currentSlide(4)"></span>
         </div>
     </section>
 
@@ -96,15 +96,16 @@
     <section id="couple" class="couple-section">
         <div class="container">
             <div class="section-header">
-                <h3>TRÂN TRỌNG THÔNG BÁO LỄ THÀNH HÔN</h3>
+                <h2 class="section-title">Trân Trọng Thông Báo</h2>
+                <p class="section-subtitle">Lễ Thành Hôn</p>
             </div>
 
             <!-- Thông tin gia đình -->
             <div class="family-info">
                 <div class="family-side groom-family">
-                    <p>NHÀ TRAI</p>
-                    <p><strong>Ông. Nguyễn Đức Thảo</strong></p>
-                    <p><strong>Bà. Lê Thị Mười</strong></p>
+                    <p class="family-label">NHÀ TRAI</p>
+                    <p class="parent-name">Ông <strong>Nguyễn Văn Túc</strong></p>
+                    <p class="parent-name">Bà <strong>Lê Thị Lan</strong></p>
                 </div>
 
                 <div class="family-divider">
@@ -112,9 +113,9 @@
                 </div>
 
                 <div class="family-side bride-family">
-                    <p>NHÀ GÁI</p>
-                    <p><strong>Ông. Nguyễn Thanh Bình</strong></p>
-                    <p><strong>Bà. Đỗ Thị Tuấn Anh</strong></p>
+                    <p class="family-label">NHÀ GÁI</p>
+                    <p class="parent-name">Ông <strong>Lê Quang Trung</strong></p>
+                    <p class="parent-name">Bà <strong>Vũ Thị Tuyết</strong></p>
                 </div>
             </div>
 
